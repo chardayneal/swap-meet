@@ -1,3 +1,4 @@
+# from .item import Item
 class Vendor:
     def __init__(self, inventory=None):
         self.inventory = [] if inventory is None else inventory
@@ -17,3 +18,13 @@ class Vendor:
             if item.id == id:
                 return item     
         return None
+    
+    def swap_items(self, other_vendor, my_item, their_item):
+        if my_item not in self.inventory or their_item not in other_vendor.inventory:
+            return False
+        
+        self.inventory.remove(my_item)
+        self.inventory.append(their_item)
+        other_vendor.inventory.remove(their_item)
+        other_vendor.inventory.append(my_item)
+        return True
