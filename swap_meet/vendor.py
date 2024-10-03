@@ -1,4 +1,3 @@
-# from .item import Item
 class Vendor:
     def __init__(self, inventory=None):
         self.inventory = [] if inventory is None else inventory
@@ -39,27 +38,29 @@ class Vendor:
         return True
 
     def get_by_category(self, category):
-        items_in_category = []
-        for item in self.inventory:
-            if item.get_category() == category:
-                items_in_category.append(item)
+        return [item for item in self.inventory if item.get_category() == category]
+        # items_in_category = []
+        # for item in self.inventory:
+        #     if item.get_category() == category:
+        #         items_in_category.append(item)
         
-        return items_in_category
+        # return items_in_category
     
     def get_best_by_category(self, category):
         category_items = self.get_by_category(category)
         if not category_items:
             return None
         
-        best_condition_item = category_items[0]
-        best_condition = category_items[0].condition
+        return max(category_items, key=lambda item : item.condition)
+        # best_condition_item = category_items[0]
+        # best_condition = category_items[0].condition
 
-        for item in category_items:
-            if item.condition > best_condition:
-                best_condition = item.condition
-                best_condition_item = item
+        # for item in category_items:
+        #     if item.condition > best_condition:
+        #         best_condition = item.condition
+        #         best_condition_item = item
 
-        return best_condition_item
+        # return best_condition_item
     
     def swap_best_by_category(self, other_vendor, my_priority, their_priority):
         my_swap_item = self.get_best_by_category(their_priority)

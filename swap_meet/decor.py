@@ -6,10 +6,6 @@ class Decor(Item):
         super().__init__(id,condition)
         self.width = width
         self.length = length
-        # if not id:
-        #     super().__init__()
-        # else:
-        #     self.id = id
 
     def __str__(self):
         return f"An object of type Decor with id {self.id}. It takes up a {self.width} by {self.length} sized space."

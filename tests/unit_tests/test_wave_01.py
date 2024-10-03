@@ -54,8 +54,3 @@ def test_removing_not_found_is_false():
     assert "c" in vendor.inventory
     assert item not in vendor.inventory
     assert not result
-
-    # raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
