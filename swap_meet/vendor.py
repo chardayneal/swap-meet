@@ -39,8 +39,7 @@ class Vendor:
 
     def get_by_category(self, category):
         return [item for item in self.inventory if item.get_category() == category]
-
-    
+       
     def get_best_by_category(self, category):
         category_items = self.get_by_category(category)
         if not category_items:
@@ -63,4 +62,12 @@ class Vendor:
 
         if not my_swap_item or not their_swap_item:
             return False
+        return self.swap_items(other_vendor, my_swap_item, their_swap_item)
+    
+    def get_newest(self):
+        return min(self.inventory, key=lambda item:item.age)
+    
+    def swap_by_newest(self, other_vendor):
+        my_swap_item = self.get_newest()
+        their_swap_item = other_vendor.get_newest()
         return self.swap_items(other_vendor, my_swap_item, their_swap_item)
