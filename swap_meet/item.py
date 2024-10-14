@@ -7,15 +7,19 @@ class Item:
         self.age = age
 
     def get_category(self):
-        return type(self).__name__
+        return self.__class__.__name__
     
     def __str__(self):
         return f"An object of type {self.get_category()} with id {self.id}."
     
     def condition_description(self):
-        if self.condition <= 2.0:
-            return "This is poor condition."
-        elif self.condition <= 4.0:
-            return "It is gently used."
-        elif self.condition > 4.0:
-            return "Fantastic condition!"
+        condition = self.condition
+        match condition:
+            case condition if 0.0 <= condition < 2.0:
+                return 'This is poor condition'
+            case condition if 2.0 <= condition < 4.0:
+                return 'It is gently used.'
+            case condition if 4.0 < condition:
+                return 'Fantastic condition'
+            case _:
+                return "Hmm...something's not right."
